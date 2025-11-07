@@ -4,11 +4,11 @@ A monorepo of various [`typst`](https://typst.app) utilities.
 
 ## [`scoped`](./scoped)
 
-A library that provides a `scoped` function that constructs a local variant of `query`, to query content only in the current scope:
+A library that implements a `scoped` function which creates a "local scope block" and provides a function to limit selectors to only the current scope:
 
 ```typst
-#import "scoped/mod.typ": scoped
-#import "cards/mod.typ" as cards
+#import "@typstware/scoped:0.1.0": scoped
+#import "@typstware/cards:0.1.0" as cards
 
 = A section
 

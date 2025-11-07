@@ -1,0 +1,10 @@
+[package]
+name = "scoped"
+version = "0.1.0"
+entrypoint = "mod.typ"
+authors = ["Yves Parès"]
+license = "MIT"
+description = "Make queries localized to current scope"
+repository = "https://github.com/YPares/typstware"
+keywords = ["introspection", "query"]
+categories = ["layout", "utility", "scripting"]

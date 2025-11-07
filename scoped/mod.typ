@@ -1,26 +1,26 @@
 #let _scope-counter = state("scope-counter", 0)
 
 #let _inside(beg, end) = selector => {
-	query(selector.after(beg, inclusive: false).before(end, inclusive: false))
+	selector.after(beg, inclusive: false).before(end, inclusive: false)
 }
 
 #let _outside(beg, end) = selector => {
-	query(selector.before(beg, inclusive: false).or(selector.after(end, inclusive: false)))
+	selector.before(beg, inclusive: false).or(selector.after(end, inclusive: false))
 }
 
 #let _before(beg, end) = (inclusive: false, selector) => {
 	if inclusive {
-		query(selector.before(end, inclusive: false))
+		selector.before(end, inclusive: false)
 	} else {
-		query(selector.before(beg, inclusive: false))
+		selector.before(beg, inclusive: false)
 	}
 }
 
 #let _after(beg, end) = (inclusive: false, selector) => {
 	if inclusive {
-		query(selector.after(beg, inclusive: false))
+		selector.after(beg, inclusive: false)
 	} else {
-		query(selector.after(end, inclusive: false))
+		selector.after(end, inclusive: false)
 	}
 }
 
@@ -28,10 +28,12 @@
 ///
 /// -> content
 #let scoped(
-	/// A function that will be called with a dictionary containing:
+	/// A function that will be called with a dictionary `scope` containing several operations on selectors:
 	//
-	//   `query-in`: a function that runs a query against the content returned by `func` only
-	//   `query-out`: a function that runs a query against the whole doc _except_ the content returned by `func`
+	//    - `(scope.inside)(s)`: limits the selector `s` to elements appearing inside the scope (ie. inside the content returned by `func`)
+	//    - `(scope.outside)(s)`: limits the selector `s` to elements appearing outside the scope
+	//    - `(scope.before)(s)`: limits the selector `s` to elements appearing before the scope (excluded)
+	//    - `(scope.after)(s)`: limits the selector `s` to elements appearing after the scope (excluded)
 	//
 	// Should return a content.
 	func

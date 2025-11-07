@@ -1,0 +1,8 @@
+[package]
+name = "cards"
+version = "0.1.0"
+entrypoint = "mod.typ"
+authors = ["Yves Parès"]
+license = "MIT"
+description = "Render card-like containers"
+repository = "https://github.com/YPares/typstware"

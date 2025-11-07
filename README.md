@@ -7,25 +7,12 @@ A monorepo of various [`typst`](https://typst.app) utilities.
 A library that provides a `scoped` function that constructs a local variant of `query`, to query content only in the current scope:
 
 ```typst
-#let card(color, title, content) = (
-	align(left,
-	stack(
-			block(
-				inset: 2pt,
-				stroke: (left: .5pt, top: .5pt, right: .5pt),
-				fill: luma(220),
-				text(size: .65em, title)
-		),
-		rect(
-			fill: color,
-			content
-		)
-	)
-	)
-)
+#import "scoped/mod.typ": scoped
+#import "cards/mod.typ" as cards
 
-== A first title outside
+= A section
 
+== A title before
 #lorem(15)
 
 #scoped(sc => [
@@ -35,25 +22,31 @@ A library that provides a `scoped` function that constructs a local variant of `
 	== A second title inside
 	#lorem(20)
 
-	#figure(caption: "Found Level 2 Headings")[
-		#card(green)[INSIDE of this "scoped" block][
-			#(sc.inside)(heading.where(level: 2)).map(it => emph(it.body)).join([, ])
-		]
+	#let queryAndJoin(selector) = query(selector).map(it => ["] + it.body + ["]).join([, ])
+	
+	#figure(caption: [Level 2 Headings])[
+		#align(left, [
+			#cards.outlined(fill: green.lighten(20%))[Inside `scoped` block][
+				#queryAndJoin( (sc.inside)(heading.where(level: 2)) )
+			]
 
-		#card(yellow)[OUTSIDE of this "scoped" block][
-			#(sc.outside)(heading.where(level: 2)).map(it => emph(it.body)).join([, ])
-		]
+			#cards.outlined(fill: red.lighten(30%))[Outside `scoped` block][
+				#queryAndJoin( (sc.outside)(heading.where(level: 2)) )
+			]
 
-		#card(blue)[BEFORE this "scoped" block][
-			#(sc.before)(heading.where(level: 2)).map(it => emph(it.body)).join([, ])
-		]
+			#cards.outlined(fill: blue.lighten(30%))[Before `scoped` block][
+				#queryAndJoin( (sc.before)(heading.where(level: 2)) )
+			]
 
-		#card(purple)[AFTER this "scoped" block][
-			#(sc.after)(heading.where(level: 2)).map(it => emph(it.body)).join([, ])
-		]
+			#cards.outlined(fill: purple.lighten(50%))[After `scoped` block][
+				#queryAndJoin( (sc.after)(heading.where(level: 2)) )
+			]
+		])
 	]
 ])
 
-== A second title outside
+== A title after
 #lorem(4)
 ```
+
+![scoped](_misc/scoped.svg)

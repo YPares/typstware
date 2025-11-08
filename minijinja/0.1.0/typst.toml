@@ -1,0 +1,10 @@
+[package]
+name = "minijinja"
+version = "0.1.0"
+entrypoint = "mod.typ"
+authors = ["Yves Parès"]
+license = "MIT"
+description = "Render minijinja templates from Typst code"
+repository = "https://github.com/YPares/typstware"
+keywords = ["templating", "minijinja"]
+categories = ["scripting", "data"]

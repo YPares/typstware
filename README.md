@@ -2,6 +2,10 @@
 
 A monorepo of various [`typst`](https://typst.app) utilities.
 
+## [`minijinja`](./minijinja)
+
+Render [`minijinja`](https://docs.rs/minijinja/latest/minijinja/) templates from Typst code.
+
 ## [`scoped`](./scoped)
 
 A library that implements a `scoped` function which creates a "local scope block" and provides a function to limit selectors to only the current scope:

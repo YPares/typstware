@@ -13,11 +13,10 @@ The packages of this repo can then be imported with:
 
 ## [`minijinja`](./minijinja)
 
-Render [`minijinja`](https://docs.rs/minijinja/latest/minijinja/) templates from Typst code.
+Render [`minijinja`](https://docs.rs/minijinja/latest/minijinja/) templates from Typst code, passing regular, potentially nested Typst data to fill in the values.
 
 Current limitations:
 
-- only passing **flat** data records is supported for now
 - missing values will cause a nondescript error message (which does not mention which value was left undefined), so beware of typos
 
 ```svg
@@ -28,7 +27,7 @@ Current limitations:
 <g opacity="0.8">
 	<rect x="25" y="25" width="200" height="200" fill="{{rect_color}}" stroke-width="4" stroke="pink" />
 	<circle cx="125" cy="125" r="75" fill="{{circle_color}}" />
-	<line x1="50" y1="50" x2="200" y2="200" stroke="{{line_color}}" stroke-width="{{line_thickness}}" />
+	<line x1="50" y1="50" x2="200" y2="200" stroke="{{line.color}}" stroke-width="{{line.thickness}}" />
 </g>
 </svg>
 ```
@@ -45,8 +44,10 @@ Several versions of the template:
     tmpl,
     rect_color: green.to-hex(),
     circle_color: yellow.to-hex(),
-    line_color: blue.to-hex(),
-    line_thickness: 2
+    line: (
+      color: blue.to-hex(),
+      thickness: 2
+    ),
   ),
   width: 30mm
 )
@@ -56,8 +57,10 @@ Several versions of the template:
     tmpl,
     rect_color: purple.to-hex(),
     circle_color: red.to-hex(),
-    line_color: black.to-hex(),
-    line_thickness: 6
+    line: (
+      color: black.to-hex(),
+      thickness: 6
+    ),
   ),
   width: 30mm
 )

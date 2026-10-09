@@ -2,8 +2,14 @@
 
 A monorepo of various [`typst`](https://typst.app) libraries.
 
-To use it locally, clone this repo into `$XDG_DATA_HOME/typst/packages`, or set the `$TYPST_PACKAGE_PATH` environment variable.
+To use it locally, clone this repo into `$XDG_DATA_HOME/typst/packages`, or set the `$TYPST_PACKAGE_PATH` environment variable. Make sure to keep the top-level folder named `typstware`.
 See [the doc on `typst/packages`](https://github.com/typst/packages#local-packages) for more information.
+
+The packages of this repo can then be imported with:
+
+```typst
+#import "@typstware/<package-name>:0.1.0"
+```
 
 ## [`minijinja`](./minijinja)
 

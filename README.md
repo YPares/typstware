@@ -1,10 +1,17 @@
 # `typstware`
 
-A monorepo of various [`typst`](https://typst.app) utilities.
+A monorepo of various [`typst`](https://typst.app) libraries.
+
+To use it locally, clone this repo into `$XDG_DATA_HOME/typst/packages`, or set the `$TYPST_PACKAGE_PATH` environment variable.
+See [the doc on `typst/packages`](https://github.com/typst/packages#local-packages) for more information.
 
 ## [`minijinja`](./minijinja)
 
 Render [`minijinja`](https://docs.rs/minijinja/latest/minijinja/) templates from Typst code.
+
+## [`cards`](./cards)
+
+Render card-like containers. See example of use below.
 
 ## [`scoped`](./scoped)
 

@@ -15,7 +15,10 @@ The packages of this repo can then be imported with:
 
 Render [`minijinja`](https://docs.rs/minijinja/latest/minijinja/) templates from Typst code.
 
-NOTE: only passing flat data records is supported for now.
+Current limitations:
+
+- only passing **flat** data records is supported for now
+- missing values will cause a nondescript error message (which does not mention which value was left undefined), so beware of typos
 
 ```svg
 <!-- template.svg -->
